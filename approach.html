@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Approach | ARM Innovation Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0b0b0b;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #999999;
+            --gray-dark: #333333;
+            --border: #e5e5e5;
+            --text: #0b0b0b;
+            --text-secondary: #666666;
+            --surface: #ffffff;
+            --background: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--background);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-links a.active {
+            color: var(--text);
+        }
+        
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--text);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .cta-button:hover {
+            background: var(--gray-dark);
+            transform: translateY(-1px);
+        }
+        
+        /* Page Header */
+        .page-hero {
+            padding: 10rem 5% 5rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .page-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gray-light);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .page-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .highlight-text {
+            color: var(--text);
+            position: relative;
+        }
+        
+        .page-hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            line-height: 1.6;
+        }
+        
+        /* Process Section */
+        .process-section {
+            padding: 6rem 5%;
+            background: var(--gray-light);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .process-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        
+        .process-step {
+            background: var(--white);
+            padding: 3rem 2rem;
+            transition: all 0.2s ease;
+        }
+        
+        .process-step:hover {
+            background: var(--gray-light);
+        }
+        
+        .step-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .process-step h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+            line-height: 1.3;
+        }
+        
+        .process-step p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* Values Section */
+        .values-section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .value-card {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .value-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+        
+        .value-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            background: var(--text);
+            color: var(--white);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            max-width: 350px;
+        }
+        
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--white);
+        }
+        
+        .footer-brand p {
+            color: var(--gray-medium);
+            line-height: 1.6;
+            margin-bottom: 1.75rem;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--gray-dark);
+            border: 1px solid var(--gray-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--white);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+        
+        .footer-links h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--gray-medium);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-dark);
+            color: var(--gray-medium);
+            font-size: 0.8rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+            }
+            
+            .page-hero {
+                padding: 6rem 5% 3rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .values-grid {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-canvas"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" onclick="window.location.href='index.html'">ARM INNOVATION</div>
+        <ul class="nav-links">
+            <li><a href="services.html">Services</a></li>
+            <li><a href="approach.html" class="active">Approach</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="cta-button" onclick="window.location.href='contact.html'">Contact</button>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="page-hero">
+        <div class="page-tag">Our Methodology</div>
+        <h1>How we <span class="highlight-text">build with AI</span></h1>
+        <p>
+            We combine technical depth with strategic vision to deliver AI solutions that bridge technological 
+            possibility and business reality. Our methodology ensures sustainable competitive advantage through 
+            intelligent, pragmatic innovation.
+        </p>
+    </section>
+    
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="section-header">
+            <h2>Our <span class="highlight-text">Process</span></h2>
+            <p>A systematic approach to AI transformation</p>
+        </div>
+        
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h3>Discovery</h3>
+                <p>
+                    We begin by understanding your business objectives, technical constraints, and organizational 
+                    readiness. This foundation ensures our AI solutions address real business challenges and 
+                    deliver measurable value.
+                </p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h3>Strategy</h3>
+                <p>
+                    We develop comprehensive AI roadmaps that align with your strategic goals. Our recommendations 
+                    prioritize quick wins while building toward long-term transformation, ensuring immediate 
+                    impact and sustainable growth.
+                </p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h3>Implementation</h3>
+                <p>
+                    Our hands-on approach ensures smooth deployment of AI solutions. We handle technical integration, 
+                    team training, and change management to guarantee adoption and success from day one.
+                </p>
+            </div>
+            
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h3>Optimization</h3>
+                <p>
+                    We continuously monitor, analyze, and refine AI systems to improve performance and adapt 
+                    to evolving needs. This iterative approach ensures your AI capabilities grow in sophistication 
+                    and business value over time.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="section-header">
+            <h2>Core <span class="highlight-text">Principles</span></h2>
+            <p>What guides our approach to every engagement</p>
+        </div>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Production-Ready Solutions</h3>
+                <p>
+                    Every recommendation prioritizes scalability, maintainability, and real-world performance. 
+                    We design architectures that can evolve with your needs and deliver measurable business 
+                    value from day one.
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <h3>Business-First Innovation</h3>
+                <p>
+                    We start with your business challenges, not technology possibilities. Our solutions are 
+                    driven by strategic objectives and designed to solve specific problems that matter to your 
+                    organization's success.
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <h3>Cutting-Edge Expertise</h3>
+                <p>
+                    We bring deep technical knowledge of the latest AI technologies and methodologies. Our team 
+                    stays at the forefront of AI innovation to ensure you benefit from the most advanced and 
+                    effective solutions available.
+                </p>
+            </div>
+            
+            <div class="value-card">
+                <h3>End-to-End Partnership</h3>
+                <p>
+                    We provide complete lifecycle support, from initial assessment through full-scale 
+                    implementation and beyond. This partnership ensures continuity, maintains strategic alignment, 
+                    and accelerates time-to-value.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">ARM INNOVATION</div>
+                <p>
+                    Transforming AI potential into strategic advantage through hands-on expertise 
+                    in AI strategy, product development, and technology innovation.
+                </p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/alexia-monize" target="_blank" aria-label="LinkedIn" title="LinkedIn">in</a>
+                    <a href="mailto:alexiarmonize@gmail.com" aria-label="Email" title="Email">✉</a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="service-strategy.html">AI Strategy</a></li>
+                    <li><a href="service-technical.html">Implementation</a></li>
+                    <li><a href="service-consulting.html">Consulting</a></li>
+                    <li><a href="service-innovation.html">Innovation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ARM Innovation Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

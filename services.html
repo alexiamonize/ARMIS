@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | ARM Innovation Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #0b0b0b;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #999999;
+            --gray-dark: #333333;
+            --border: #e5e5e5;
+            --text: #0b0b0b;
+            --text-secondary: #666666;
+            --surface: #ffffff;
+            --background: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        
+        /* Background */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--background);
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: var(--background);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            cursor: pointer;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-links a.active {
+            color: var(--text);
+        }
+        
+        .nav-links a:hover {
+            color: var(--text);
+        }
+        
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--text);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .cta-button:hover {
+            background: var(--gray-dark);
+            transform: translateY(-1px);
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 10rem 5% 5rem;
+            text-align: center;
+        }
+        
+        .page-tag {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            background: rgba(0, 255, 163, 0.08);
+            border: 1px solid rgba(0, 255, 163, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+        
+        .page-header h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent), var(--accent-dim));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+        
+        /* Services Grid */
+        .services-section {
+            padding: 4rem 5% 8rem;
+        }
+        
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+        
+        .service-detail-card {
+            background: var(--surface);
+            border: 1px solid rgba(0, 255, 163, 0.15);
+            border-radius: 24px;
+            padding: 3.5rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-bright), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .service-detail-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(0, 255, 163, 0.4);
+            box-shadow: 0 30px 80px rgba(0, 255, 163, 0.25);
+        }
+        
+        .service-detail-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .service-icon-large {
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, rgba(0, 255, 163, 0.15), rgba(0, 204, 130, 0.1));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.25rem;
+            flex-shrink: 0;
+        }
+        
+        .service-detail-card h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.2;
+        }
+        
+        .service-detail-card .description {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            line-height: 1.75;
+            margin-bottom: 2.5rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .service-features li {
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(0, 255, 163, 0.08);
+            color: var(--text-dim);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        
+        .service-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-features li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .learn-more:hover {
+            gap: 0.75rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(0, 255, 163, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand {
+            max-width: 400px;
+        }
+        
+        .footer-brand .logo {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .footer-brand p {
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 1.75rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 255, 163, 0.08);
+            border: 1px solid rgba(0, 255, 163, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.25rem;
+        }
+        
+        .social-links a:hover {
+            background: rgba(0, 255, 163, 0.15);
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.85rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 163, 0.1);
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-canvas">
+        <div class="grid-overlay"></div>
+    </div>
+    
+    <nav>
+        <div class="logo" onclick="window.location.href='index.html'">ARM INNOVATION</div>
+        <ul class="nav-links">
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="approach.html">Approach</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="cta-button" onclick="window.location.href='contact.html'">Get Started</button>
+    </nav>
+    
+    <section class="page-header">
+        <div class="page-tag">Our Services</div>
+        <h1>Comprehensive <span class="gradient-text">AI Solutions</span></h1>
+        <p>
+            End-to-end expertise across the complete AI product lifecycle, from initial discovery 
+            through full-scale implementation and beyond.
+        </p>
+    </section>
+    
+    <section class="services-section">
+        <div class="services-grid">
+            <div class="service-detail-card" onclick="window.location.href='service-strategy.html'">
+                <div class="service-header">
+                    <div class="service-icon-large">🎯</div>
+                    <h2>AI Strategy & Product Development</h2>
+                </div>
+                <p class="description">
+                    Transform your AI vision into reality with comprehensive strategy and product development 
+                    services that take you from opportunity identification to successful implementation.
+                </p>
+                <ul class="service-features">
+                    <li>Opportunity identification and feasibility assessment</li>
+                    <li>Product roadmap and architecture design</li>
+                    <li>LLM application development and optimization</li>
+                    <li>Implementation planning and execution</li>
+                </ul>
+                <a href="service-strategy.html" class="learn-more">Explore in detail →</a>
+            </div>
+            
+            <div class="service-detail-card" onclick="window.location.href='service-technical.html'">
+                <div class="service-header">
+                    <div class="service-icon-large">⚡</div>
+                    <h2>Technical Advisory & Implementation</h2>
+                </div>
+                <p class="description">
+                    Get hands-on technical expertise to ensure your AI solutions are production-ready, 
+                    scalable, and aligned with your business objectives from day one.
+                </p>
+                <ul class="service-features">
+                    <li>AI architecture design and review</li>
+                    <li>Model selection and integration strategies</li>
+                    <li>Deployment and scaling guidance</li>
+                    <li>Performance optimization and monitoring</li>
+                </ul>
+                <a href="service-technical.html" class="learn-more">Explore in detail →</a>
+            </div>
+            
+            <div class="service-detail-card" onclick="window.location.href='service-innovation.html'">
+                <div class="service-header">
+                    <div class="service-icon-large">🚀</div>
+                    <h2>Innovation Frameworks</h2>
+                </div>
+                <p class="description">
+                    Embed AI capabilities into your existing operations with custom frameworks that 
+                    accelerate value realization and drive sustainable competitive advantage.
+                </p>
+                <ul class="service-features">
+                    <li>Technology assessment and capability mapping</li>
+                    <li>Custom implementation frameworks</li>
+                    <li>Change management and adoption strategies</li>
+                    <li>Continuous innovation processes</li>
+                </ul>
+                <a href="service-innovation.html" class="learn-more">Explore in detail →</a>
+            </div>
+            
+            <div class="service-detail-card" onclick="window.location.href='service-consulting.html'">
+                <div class="service-header">
+                    <div class="service-icon-large">💡</div>
+                    <h2>Strategic Consulting</h2>
+                </div>
+                <p class="description">
+                    Partner directly with executives and product leaders to identify transformative 
+                    opportunities and develop actionable strategies that position your organization ahead.
+                </p>
+                <ul class="service-features">
+                    <li>Executive AI strategy sessions</li>
+                    <li>Emerging technology evaluation</li>
+                    <li>Competitive positioning and market analysis</li>
+                    <li>Strategic roadmap development</li>
+                </ul>
+                <a href="service-consulting.html" class="learn-more">Explore in detail →</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">ARM INNOVATION</div>
+                <p>
+                    Transforming AI potential into strategic advantage through hands-on expertise 
+                    in AI strategy, product development, and technology innovation.
+                </p>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/alexia-monize" target="_blank" aria-label="LinkedIn">in</a>
+                    <a href="mailto:alexiarmonize@gmail.com" aria-label="Email">✉</a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="service-strategy.html">AI Strategy</a></li>
+                    <li><a href="service-technical.html">Implementation</a></li>
+                    <li><a href="service-consulting.html">Consulting</a></li>
+                    <li><a href="service-innovation.html">Innovation</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ARM Innovation Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
