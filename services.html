@@ -110,39 +110,48 @@
             transform: translateY(-1px);
         }
         
-        /* Page Header */
-        .page-header {
+         /* Page Header */
+        .page-hero {
             padding: 10rem 5% 5rem;
             text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .page-tag {
             display: inline-block;
-            padding: 0.5rem 1.25rem;
-            background: rgba(0, 255, 163, 0.08);
-            border: 1px solid rgba(0, 255, 163, 0.3);
+            padding: 0.5rem 1rem;
+            background: var(--gray-light);
+            border: 1px solid var(--border);
             border-radius: 50px;
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            color: var(--accent);
+            color: var(--text-secondary);
             margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
         
-        .page-header h1 {
-            font-family: 'Syne', sans-serif;
+        .page-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
+            font-weight: 700;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
         
-        .page-header p {
-            font-size: 1.3rem;
-            color: var(--text-dim);
+        .highlight-text {
+            color: var(--text);
+            position: relative;
+        }
+        
+        .page-hero p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-secondary);
             max-width: 800px;
-            margin: 0 auto 3rem;
-            line-height: 1.7;
+            margin: 0 auto 4rem;
+            line-height: 1.6;
         }
         
         /* Services Grid */
